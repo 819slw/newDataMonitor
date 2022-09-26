@@ -39,10 +39,11 @@
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/slidingTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
             tl:tl_indicator_corner_radius="1.5dp"
             tl:tl_indicator_height="3dp"
-            tl:tl_indicator_width="10dp"/>
+            tl:tl_indicator_width="30dp"/>
     </LinearLayout>
 
     <!--    fragment 区域-->
