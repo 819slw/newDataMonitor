@@ -14,8 +14,12 @@ import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
 import com.shilinwei.videomonitor.entity.TabEntity;
 import com.shilinwei.videomonitor.fragment.BallFragment;
+import com.shilinwei.videomonitor.fragment.DeviceFragment;
 import com.shilinwei.videomonitor.fragment.ImageFragment;
+import com.shilinwei.videomonitor.fragment.MapFragment;
+import com.shilinwei.videomonitor.fragment.MyFragment;
 import com.shilinwei.videomonitor.fragment.OutDestructionFragment;
+import com.shilinwei.videomonitor.fragment.RecordFragment;
 import com.shilinwei.videomonitor.fragment.VideoFragment;
 
 import java.util.ArrayList;
@@ -46,10 +50,10 @@ public class HomeActivity extends AppCompatActivity {
         commonTabLayout = findViewById(R.id.commonTabLayout);
 
 //        添加fragment
-        fragments.add(OutDestructionFragment.newInstance());
-        fragments.add(VideoFragment.newInstance());
-        fragments.add(ImageFragment.newInstance());
-        fragments.add(BallFragment.newInstance());
+        fragments.add(DeviceFragment.newInstance());
+        fragments.add(RecordFragment.newInstance());
+        fragments.add(MapFragment.newInstance());
+        fragments.add(MyFragment.newInstance());
 
 //        添加tabs
         for (int i = 0; i < mTitles.length; i++) {
