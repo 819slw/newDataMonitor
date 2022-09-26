@@ -17,20 +17,23 @@
         android:layout_weight="1"/>
 
 
+<!--    tabbar的线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8a8a8a"></View>
 <!--    底部的tabbar区域-->
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/commonTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="66dp"
         android:background="#ffffff"
-        tl:tl_iconHeight="23dp"
-        tl:tl_iconWidth="23dp"
+        tl:tl_iconHeight="30dp"
+        tl:tl_iconWidth="30dp"
         tl:tl_indicator_color="#8a8a8a"
         tl:tl_indicator_height="0dp"
         tl:tl_textSelectColor="#1867c0"
         tl:tl_textUnselectColor="#8a8a8a"
-        tl:tl_textsize="12sp"
-        tl:tl_underline_color="#8a8a8a"
-        tl:tl_underline_height="1dp"/>
+        tl:tl_textsize="14sp"/>
 
 </LinearLayout>

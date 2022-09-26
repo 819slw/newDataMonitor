@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -13,14 +12,10 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
 import com.shilinwei.videomonitor.entity.TabEntity;
-import com.shilinwei.videomonitor.fragment.BallFragment;
 import com.shilinwei.videomonitor.fragment.DeviceFragment;
-import com.shilinwei.videomonitor.fragment.ImageFragment;
 import com.shilinwei.videomonitor.fragment.MapFragment;
 import com.shilinwei.videomonitor.fragment.MyFragment;
-import com.shilinwei.videomonitor.fragment.OutDestructionFragment;
 import com.shilinwei.videomonitor.fragment.RecordFragment;
-import com.shilinwei.videomonitor.fragment.VideoFragment;
 
 import java.util.ArrayList;
 
