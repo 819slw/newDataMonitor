@@ -61,6 +61,8 @@ public class HomeActivity extends AppCompatActivity {
         commonTabLayout.setTabData(mTabEntities);
 
 
+//        预加载fragment，防止快速点击时会崩溃
+        viewPager.setOffscreenPageLimit(fragments.size());
 //        给tabs添加点击事件
         commonTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
