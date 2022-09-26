@@ -1,14 +1,79 @@
 package com.shilinwei.videomonitor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.shilinwei.videomonitor.R;
+import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
+import com.shilinwei.videomonitor.entity.TabEntity;
+import com.shilinwei.videomonitor.fragment.BallFragment;
+import com.shilinwei.videomonitor.fragment.ImageFragment;
+import com.shilinwei.videomonitor.fragment.OutDestructionFragment;
+import com.shilinwei.videomonitor.fragment.VideoFragment;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+
+
+    private String[] mTitles = {"设备", "记录", "地图", "我的"};
+    private int[] mIconUnselectIds = {
+            R.mipmap.demo, R.mipmap.demo,
+            R.mipmap.demo, R.mipmap.demo};
+    private int[] mIconSelectIds = {
+            R.mipmap.demo, R.mipmap.demo,
+            R.mipmap.demo, R.mipmap.demo};
+
+//    存放tabs的集合
+    private ArrayList<Fragment> fragments = new ArrayList<>();
+//    tabs
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private ViewPager viewPager;
+    private CommonTabLayout commonTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        viewPager = findViewById(R.id.viewpager);
+        commonTabLayout = findViewById(R.id.commonTabLayout);
+
+//        添加fragment
+        fragments.add(OutDestructionFragment.newInstance());
+        fragments.add(VideoFragment.newInstance());
+        fragments.add(ImageFragment.newInstance());
+        fragments.add(BallFragment.newInstance());
+
+//        添加tabs
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+        }
+
+//        建立activity和fragment的联系
+        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragments, mTitles));
+
+        commonTabLayout.setTabData(mTabEntities);
+
+
+//        给tabs添加点击事件
+        commonTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                viewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+
     }
 }

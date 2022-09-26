@@ -15,4 +15,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <Button
+        android:id="@+id/btn"
+        android:onClick="goSecond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="惦记我"></Button>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
