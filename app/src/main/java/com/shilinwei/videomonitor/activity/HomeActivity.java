@@ -79,5 +79,24 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
+//        页面切换的回调
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                commonTabLayout.setCurrentTab(position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 }
