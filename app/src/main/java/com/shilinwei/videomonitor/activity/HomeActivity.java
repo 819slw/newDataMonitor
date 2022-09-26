@@ -25,11 +25,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private String[] mTitles = {"设备", "记录", "地图", "我的"};
     private int[] mIconUnselectIds = {
-            R.mipmap.demo, R.mipmap.demo,
-            R.mipmap.demo, R.mipmap.demo};
+            R.mipmap.device, R.mipmap.record,
+            R.mipmap.map, R.mipmap.my};
     private int[] mIconSelectIds = {
-            R.mipmap.demo, R.mipmap.demo,
-            R.mipmap.demo, R.mipmap.demo};
+            R.mipmap.select_device, R.mipmap.select_recode,
+            R.mipmap.select_map, R.mipmap.select_my};
 
 //    存放tabs的集合
     private ArrayList<Fragment> fragments = new ArrayList<>();
