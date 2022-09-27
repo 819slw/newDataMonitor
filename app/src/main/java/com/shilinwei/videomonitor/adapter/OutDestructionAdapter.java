@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 
@@ -34,28 +35,6 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.datas = datas;
     }
 
-    public static Bitmap getHttpBitmap(String url) {
-        URL myFileUrl = null;
-        Bitmap bitmap = null;
-        try {
-            myFileUrl = new URL(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        try {
-            HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
-            conn.setConnectTimeout(0);
-            conn.setDoInput(true);
-            conn.connect();
-            InputStream is = conn.getInputStream();
-            bitmap = BitmapFactory.decodeStream(is);
-            is.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -69,12 +48,12 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 //        在这里进行数据绑定
         ViewHolder vh = (ViewHolder) holder;
-
         OutDestructionEntity outDestructionEntity = datas.get(position);
         vh.name.setText(outDestructionEntity.getDeviceName());
-//        vh.poster.setImageBitmap(getHttpBitmap(outDestructionEntity.getPoster()));
+        System.out.println(outDestructionEntity.getPoster());
         vh.isOnline.setText(outDestructionEntity.getStatus() == 1 ? "在线" : "离线" );
         vh.isOnline.setTextColor(Color.parseColor(outDestructionEntity.getStatus() == 1 ? "#4CAF50" : "#F44336"));
+        Glide.with(mContext).load(outDestructionEntity.getPoster()).into(vh.poster);
     }
 
     @Override
