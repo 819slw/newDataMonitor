@@ -3,23 +3,21 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_constraintCircleRadius="1.5dp"
-    android:layout_height="120dp">
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="140dp">
 
     <ImageView
         android:id="@+id/iv_video_poster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/search_icon"></ImageView>
+        android:scaleType="fitXY"
+        android:src="@mipmap/bk"></ImageView>
+
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="2019年12月13日 19:23:23"></TextView>
-
-    <TextView
+        android:id="@+id/tv_devicename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="我是撒打算打算打算"
@@ -48,6 +46,7 @@
         android:layout_marginRight="5dp">
 
         <TextView
+            android:id="@+id/tv_circle"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginRight="5dp"
@@ -55,6 +54,7 @@
             android:background="@drawable/circle"></TextView>
 
         <TextView
+            android:id="@+id/tv_isonline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
