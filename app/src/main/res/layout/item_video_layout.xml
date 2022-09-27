@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintCircleRadius="1.5dp"
+    android:layout_height="120dp">
+
+    <ImageView
+        android:id="@+id/iv_video_poster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/search_icon"></ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="2019年12月13日 19:23:23"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我是撒打算打算打算"
+        android:background="@drawable/shape_radius"
+        android:paddingHorizontal="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:paddingVertical="5dp"></TextView>
+
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/more"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"></View>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#4CAF50"
+            android:text="在线"></TextView>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/play"></ImageView>
+
+</RelativeLayout>
