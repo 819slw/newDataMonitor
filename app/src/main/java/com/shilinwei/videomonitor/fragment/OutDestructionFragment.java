@@ -1,5 +1,6 @@
 package com.shilinwei.videomonitor.fragment;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ import javax.net.ssl.X509TrustManager;
 public class OutDestructionFragment extends Fragment {
 
     RecyclerView recyclerView = null;
+    public Context mContext;
 
     public static void handleSSLHandshake() {
         try {
@@ -121,14 +123,13 @@ public class OutDestructionFragment extends Fragment {
 //        给recyclerView设置布局管理器
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
         getOutDestructionList();
     }
 
     private void getOutDestructionList() {
         HashMap<String, String> params = new HashMap<>();
         params.put("depart_id", "1/21/");
-        Api.config(ApiConfig.DeviceList, params).postRequest(new TtitCallback() {
+        Api.config(ApiConfig.DeviceList, params).postRequest(getActivity(),new TtitCallback() {
             @Override
             public void onSuccess(String res) {
                 OutDestructionResponseEntity list = new Gson().fromJson(res, OutDestructionResponseEntity.class);

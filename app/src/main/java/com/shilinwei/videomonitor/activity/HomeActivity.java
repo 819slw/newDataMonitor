@@ -19,7 +19,7 @@ import com.shilinwei.videomonitor.fragment.RecordFragment;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
 
     private String[] mTitles = {"设备", "记录", "地图", "我的"};

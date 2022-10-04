@@ -1,4 +1,6 @@
 package com.shilinwei.videomonitor.api;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 
@@ -18,11 +20,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import com.shilinwei.videomonitor.activity.BaseActivity;
+import com.shilinwei.videomonitor.activity.LoginActivity;
 import com.shilinwei.videomonitor.util.StringUtils;
 
 
 
-public class Api {
+public class Api extends BaseActivity {
     private static OkHttpClient client;
 
     private static String requestUrl;
@@ -43,34 +48,27 @@ public class Api {
         return api;
     }
 
-//    public void postRequest(Context context, final TtitCallback callback) {
-        public void postRequest(final TtitCallback callback) {
-//        SharedPreferences sp = context.getSharedPreferences("sp_ttit", MODE_PRIVATE);
+    public void postRequest(Context context, final TtitCallback callback) {
+        SharedPreferences sp = context.getSharedPreferences("sp_ttit", Context.MODE_PRIVATE);
+        String token = sp.getString("token", "");
 
+        if(token == null || token.length() <=0 && requestUrl.indexOf(ApiConfig.LOGIN) == -1) {
+            navigateTo(LoginActivity.class);
+        }
 
-//        JSONObject jsonObject = new JSONObject(mParams);
-//        String jsonStr = jsonObject.toString();
-//        RequestBody requestBodyJson =
-//                RequestBody.create(MediaType.parse("application/json;charset=utf-8")
-//                        , jsonStr);
-
-
-            FormBody.Builder formBody = new FormBody.Builder();//创建表单请求体
-            for (String key : mParams.keySet()) {
-                formBody.add(key, mParams.get(key));
-            }
-            RequestBody body= formBody.build();
-
-
-
-
+        FormBody.Builder formBody = new FormBody.Builder();//创建表单请求体
+        for (String key : mParams.keySet()) {
+            formBody.add(key, mParams.get(key));
+        }
+        RequestBody body= formBody.build();
 
         //第三步创建Rquest
         Request request = new Request.Builder()
                 .url(requestUrl)
 //                .addHeader("contentType", "application/json;charset=UTF-8")
                 .addHeader("contentType", "application/x-www-form-urlencoded")
-                .addHeader("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ4enhfbHQiLCJyb2xlX2lkIjoiYWJjZCIsImV4cCI6MTY2NTAzODUyNn0.L13Du-v1uUcp3nD0plMUT_T5SMHrIfUdQ7WyNYomnLc")
+                .addHeader("x-access-token", token)
+//                .addHeader("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ4enhfbHQiLCJyb2xlX2lkIjoiYWJjZCIsImV4cCI6MTY2NTAzODUyNn0.L13Du-v1uUcp3nD0plMUT_T5SMHrIfUdQ7WyNYomnLc")
 //                .post(requestBodyJson)
                 .post(body)
                 .build();
