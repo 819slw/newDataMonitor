@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/shape_login_radius.xml" value="0.3385" />
         <entry key="app/src/main/res/drawable/shape_radius.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/shape_search_box.xml" value="0.192" />
+        <entry key="app/src/main/res/layout/activity_device_detail.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23170731707317074" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14814814814814814" />
