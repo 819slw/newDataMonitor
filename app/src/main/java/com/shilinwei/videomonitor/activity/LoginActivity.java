@@ -73,6 +73,8 @@ public class LoginActivity extends BaseActivity {
                         if(loginResponseEntity.getCode() == 200) {
                             String auth_token = loginResponseEntity.getData().getAuth_token();
                             setLocalstorage("token", auth_token);
+                            setLocalstorage("account", accountVal);
+                            setLocalstorage("userInfo", res);
                             navigateTo(HomeActivity.class);
                             showToastSync("登录成功");
                         }else {
@@ -82,7 +84,7 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onFailure(Exception e) {
-
+                        showToastSync("登录失败，请重试");
                     }
                 });
 

@@ -42,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void setLocalstorage(String key, String value) {
         SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
-        edit.putString("key", value);
+        edit.putString(key, value);
         edit.commit();
     }
 

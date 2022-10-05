@@ -22,6 +22,7 @@ import com.shilinwei.videomonitor.adapter.OutDestructionAdapter;
 import com.shilinwei.videomonitor.api.Api;
 import com.shilinwei.videomonitor.api.ApiConfig;
 import com.shilinwei.videomonitor.api.TtitCallback;
+import com.shilinwei.videomonitor.entity.LoginResponseEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionResponseEntity;
 
@@ -50,7 +51,7 @@ import javax.net.ssl.X509TrustManager;
  * Use the {@link OutDestructionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OutDestructionFragment extends Fragment {
+public class OutDestructionFragment extends BaseFragment {
 
     RecyclerView recyclerView = null;
     public Context mContext;
@@ -128,7 +129,11 @@ public class OutDestructionFragment extends Fragment {
 
     private void getOutDestructionList() {
         HashMap<String, String> params = new HashMap<>();
-        params.put("depart_id", "1/21/");
+        String userInfo = findByKey("userInfo");
+        LoginResponseEntity loginResponseEntity = new Gson().fromJson(userInfo, LoginResponseEntity.class);
+        String depart_id = loginResponseEntity.getData().getDepart_id();
+        params.put("depart_id", depart_id);
+
         Api.config(ApiConfig.DeviceList, params).postRequest(getActivity(),new TtitCallback() {
             @Override
             public void onSuccess(String res) {

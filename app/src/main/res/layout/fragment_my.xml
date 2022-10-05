@@ -1,14 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.MyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="我的" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:background="@drawable/card_two_color"
+            android:paddingLeft="16dp"
+            >
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_gravity="center_vertical"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/radius_white"
+                android:textColor="@color/purple_200"
+                android:text="姓名"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                ></TextView>
 
-</FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_200"
+                android:text="账号"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:paddingLeft="32dp"
+                ></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:onClick="switchAccount"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="50dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/icon_switch"></ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="切换账号"
+                    android:textColor="@color/purple_200"
+                    android:paddingLeft="16dp"></TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:paddingTop="15dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="end"
+                        android:background="@mipmap/arrow_right"></ImageView>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/purple_200"></View>
+        </LinearLayout>
+
+
+</LinearLayout>
