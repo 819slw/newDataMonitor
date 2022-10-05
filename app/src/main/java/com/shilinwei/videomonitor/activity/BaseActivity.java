@@ -31,7 +31,10 @@ public class BaseActivity extends AppCompatActivity {
         Looper.loop();
     }
 
-
+    protected String findByKey(String key) {
+        SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
+        return sp.getString(key, "");
+    }
 
     public void navigateTo(Class cls) {
         Intent intent = new Intent(mContext, cls);

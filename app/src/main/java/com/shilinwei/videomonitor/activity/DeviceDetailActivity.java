@@ -14,8 +14,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.google.gson.Gson;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
+import com.shilinwei.videomonitor.api.Api;
+import com.shilinwei.videomonitor.api.ApiConfig;
+import com.shilinwei.videomonitor.entity.LoginResponseEntity;
 import com.shilinwei.videomonitor.fragment.DetailControlFragment;
 import com.shilinwei.videomonitor.fragment.DetailHistoryFragment;
 import com.shilinwei.videomonitor.fragment.DetailPlaybackFragment;
@@ -26,7 +30,7 @@ import com.videogo.openapi.EZPlayer;
 
 import java.util.ArrayList;
 
-public class DeviceDetailActivity extends AppCompatActivity {
+public class DeviceDetailActivity extends BaseActivity {
 
     private SurfaceView viewById;
     private EZPlayer player;
@@ -82,7 +86,11 @@ public class DeviceDetailActivity extends AppCompatActivity {
         EZOpenSDK.showSDKLog(true);
         EZOpenSDK.enableP2P(false);
         EZOpenSDK.initLib(getApplication(), "21494de78df641d180f9c19be52ee0e9");
-        EZOpenSDK.getInstance().setAccessToken("at.7l4uc29h9azb2w8k8f9bg99d88jid3n9-86stq5w3i3-17057sn-y0gxcjbpk");
+        String userInfo = findByKey("userInfo");
+        LoginResponseEntity loginResponseEntity = new Gson().fromJson(userInfo, LoginResponseEntity.class);
+        String access_token = loginResponseEntity.getData().getAccess_token();
+        EZOpenSDK.getInstance().setAccessToken(access_token);
+//        EZOpenSDK.getInstance().setAccessToken("at.7l4uc29h9azb2w8k8f9bg99d88jid3n9-86stq5w3i3-17057sn-y0gxcjbpk");
 
     }
 
