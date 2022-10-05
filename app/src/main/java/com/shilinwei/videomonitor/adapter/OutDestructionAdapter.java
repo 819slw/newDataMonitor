@@ -52,6 +52,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 //        在这里进行数据绑定
         ViewHolder vh = (ViewHolder) holder;
+        int index = position;
         OutDestructionEntity outDestructionEntity = datas.get(position);
         vh.name.setText(outDestructionEntity.getDeviceName());
         vh.isOnline.setText(outDestructionEntity.getStatus() == 1 ? "在线" : "离线" );
@@ -62,7 +63,9 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         vh.rlBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String deviceSerial = datas.get(index).getDeviceSerial();
                 Intent intent = new Intent(mContext, DeviceDetailActivity.class);
+                intent.putExtra("deviceSerial", deviceSerial);
                 mContext.startActivity(intent);
             }
         });

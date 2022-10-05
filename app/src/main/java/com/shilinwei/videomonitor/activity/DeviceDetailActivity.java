@@ -7,27 +7,20 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
-import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
-import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
-import com.shilinwei.videomonitor.entity.TabEntity;
 import com.shilinwei.videomonitor.fragment.DetailControlFragment;
 import com.shilinwei.videomonitor.fragment.DetailHistoryFragment;
 import com.shilinwei.videomonitor.fragment.DetailPlaybackFragment;
 import com.shilinwei.videomonitor.fragment.DetailWeatherFragment;
-import com.shilinwei.videomonitor.fragment.DeviceFragment;
-import com.shilinwei.videomonitor.fragment.MapFragment;
-import com.shilinwei.videomonitor.fragment.MyFragment;
-import com.shilinwei.videomonitor.fragment.RecordFragment;
+
 import com.videogo.openapi.EZOpenSDK;
 import com.videogo.openapi.EZPlayer;
 
@@ -37,6 +30,7 @@ public class DeviceDetailActivity extends AppCompatActivity {
 
     private SurfaceView viewById;
     private EZPlayer player;
+    private String deviceSerial;
 
 
     private String[] mTitles = {"云控", "天气", "历史", "回放"};
@@ -49,8 +43,16 @@ public class DeviceDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_detail);
-        EkPlayerInit();
 
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        deviceSerial =(String) extras.get("deviceSerial");
+        EkPlayerInit();
+        initTabs();
+
+    }
+
+    public void initTabs() {
         viewPager = findViewById(R.id.viewpager);
         slidingTabLayout = findViewById(R.id.slidingTabLayout);
 
@@ -89,7 +91,7 @@ public class DeviceDetailActivity extends AppCompatActivity {
     }
 
     public void EZreadyStart() {
-        player  = EZOpenSDK.getInstance().createPlayer("J00205213",1);
+        player  = EZOpenSDK.getInstance().createPlayer(deviceSerial,1);
         player.setSurfaceHold(viewById.getHolder());player.startRealPlay();
     }
 
