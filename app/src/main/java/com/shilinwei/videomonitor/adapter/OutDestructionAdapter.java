@@ -1,6 +1,7 @@
 package com.shilinwei.videomonitor.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.shilinwei.videomonitor.R;
+import com.shilinwei.videomonitor.activity.DeviceDetailActivity;
+import com.shilinwei.videomonitor.activity.LoginActivity;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 
 import java.io.IOException;
@@ -54,6 +57,16 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         vh.isOnline.setText(outDestructionEntity.getStatus() == 1 ? "在线" : "离线" );
         vh.isOnline.setTextColor(Color.parseColor(outDestructionEntity.getStatus() == 1 ? "#4CAF50" : "#F44336"));
         Glide.with(mContext).load(outDestructionEntity.getPoster()).into(vh.poster);
+
+
+        vh.rlBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, DeviceDetailActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -69,6 +82,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         private TextView name;
         private TextView circle;
         private TextView isOnline;
+        private RelativeLayout rlBox;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -76,6 +90,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             name = view.findViewById(R.id.tv_devicename);
             circle = view.findViewById(R.id.tv_circle);
             isOnline = view.findViewById(R.id.tv_isonline);
+            rlBox = view.findViewById(R.id.rl_box);
         }
 
     }
