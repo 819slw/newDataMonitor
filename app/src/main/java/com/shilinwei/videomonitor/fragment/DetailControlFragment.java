@@ -50,6 +50,15 @@ public class DetailControlFragment extends BaseFragment {
     private RelativeLayout addViewTl8;
     private RelativeLayout yugua1;
     private RelativeLayout zuoshang4;
+    private RelativeLayout shang0;
+    private RelativeLayout youshang6;
+    private RelativeLayout suoxiao9;
+    private RelativeLayout zuoer2;
+    private RelativeLayout mic9;
+    private RelativeLayout you3;
+    private RelativeLayout zuoxia5;
+    private RelativeLayout xia1;
+    private RelativeLayout youxia7;
 
     public DetailControlFragment() {
         // Required empty public constructor
@@ -146,6 +155,168 @@ public class DetailControlFragment extends BaseFragment {
                     case MotionEvent.ACTION_DOWN:
                         System.out.println("按下");
                         moveStartPreset("4");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        shang0.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("0");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("0");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        youshang6.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("6");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("6");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        suoxiao9.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("9");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("9");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        zuoer2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("2");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("2");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        you3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("3");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("3");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        zuoxia5.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("5");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("5");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        xia1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("1");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("1");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        youxia7.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("7");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("7");
+                        break;
+                    default:break;
+                }
+                return true;
+            }
+        });
+
+        mic9.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        System.out.println("抬起");
+                        moveEndPreset("9");
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        System.out.println("按下");
+                        moveStartPreset("9");
                         break;
                     default:break;
                 }
@@ -263,6 +434,16 @@ public class DetailControlFragment extends BaseFragment {
         yugua1 = v.findViewById(R.id.rl_yugua1);
         addViewTl8 = v.findViewById(R.id.rl_addView8);
         zuoshang4 = v.findViewById(R.id.rl_zuoshang4);
+        shang0 = v.findViewById(R.id.rl_shang0);
+
+        youshang6 = v.findViewById(R.id.rl_youshang6);
+        suoxiao9 = v.findViewById(R.id.rl_suoxiao9);
+        zuoer2 = v.findViewById(R.id.rl_zuoer2);
+        mic9 = v.findViewById(R.id.rl_mic9);
+        you3 = v.findViewById(R.id.rl_you3);
+        zuoxia5 = v.findViewById(R.id.rl_zuoxia5);
+        xia1 = v.findViewById(R.id.rl_xia1);
+        youxia7 = v.findViewById(R.id.rl_youxia7);
 
         initSpinner();
         initEvent();
