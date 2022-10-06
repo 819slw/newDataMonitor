@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/border_arrow.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/border_bottom.xml" value="0.301" />
         <entry key="app/src/main/res/drawable/card_two_color.xml" value="0.2305" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.199" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/fragment_my.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/fragment_out_destruction.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/layout/fragment_page_a.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_record.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_video_layout.xml" value="0.1" />

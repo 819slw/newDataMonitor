@@ -53,7 +53,6 @@ public class DeviceDetailActivity extends BaseActivity {
         deviceSerial =(String) extras.get("deviceSerial");
         EkPlayerInit();
         initTabs();
-
     }
 
     public void initTabs() {
@@ -61,7 +60,7 @@ public class DeviceDetailActivity extends BaseActivity {
         slidingTabLayout = findViewById(R.id.slidingTabLayout);
 
 //        添加fragment
-        fragments.add(DetailControlFragment.newInstance());
+        fragments.add(DetailControlFragment.newInstance(deviceSerial));
         fragments.add(DetailWeatherFragment.newInstance());
         fragments.add(DetailHistoryFragment.newInstance());
         fragments.add(DetailPlaybackFragment.newInstance());
@@ -90,8 +89,6 @@ public class DeviceDetailActivity extends BaseActivity {
         LoginResponseEntity loginResponseEntity = new Gson().fromJson(userInfo, LoginResponseEntity.class);
         String access_token = loginResponseEntity.getData().getAccess_token();
         EZOpenSDK.getInstance().setAccessToken(access_token);
-//        EZOpenSDK.getInstance().setAccessToken("at.7l4uc29h9azb2w8k8f9bg99d88jid3n9-86stq5w3i3-17057sn-y0gxcjbpk");
-
     }
 
     public void EZStart() {
