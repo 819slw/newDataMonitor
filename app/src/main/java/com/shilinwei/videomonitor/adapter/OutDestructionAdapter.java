@@ -73,7 +73,6 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 mContext.startActivity(intent);
             }
         });
-
     }
 
     @Override

@@ -15,4 +15,5 @@ public class ApiConfig {
     public static final String MoveEndPreset = "/api/v1/mobile/device/ptz/stop"; // 预设点列表
     public static final String nowWeather = "/v7/weather/now"; // 天气
     public static final String threeDayWeather = "/v7/weather/3d"; // 天气
+    public static final String GetLogList = "/api/v1/mobile/log/list"; // 天气
 }
