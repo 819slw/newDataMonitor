@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.DetailWeatherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="天气" />
+  <GridLayout
+      android:layout_width="match_parent"
+      android:columnCount="2"
+      android:rowCount="1"
+      android:layout_height="100dp">
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_columnWeight="1"
+          android:orientation="horizontal"
+          android:gravity="center"
+          android:layout_height="match_parent">
+          <ImageView
+              android:id="@+id/iv_now_icon"
+              android:layout_gravity="center_vertical"
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@mipmap/qingtian"
+              android:layout_marginRight="20dp"></ImageView>
+          <LinearLayout
+              android:layout_gravity="center_vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical">
+              <TextView
+                  android:id="@+id/now_temp"
+                  android:layout_width="wrap_content"
+                  android:textSize="20dp"
+                  android:textStyle="bold"
+                  android:layout_height="wrap_content"
+                  android:text="20度"></TextView>
+              <TextView
+                  android:id="@+id/tv_now_word"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="晴"></TextView>
+          </LinearLayout>
+      </LinearLayout>
 
-</FrameLayout>
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_columnWeight="1"
+          android:orientation="vertical"
+          android:gravity="center_vertical"
+          >
+          <TextView
+              android:id="@+id/tv_now_feng"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="风力：3级"></TextView>
+          <TextView
+              android:id="@+id/tv_now_kejian"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="能见度：22公里"></TextView>
+
+      </LinearLayout>
+  </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:columnCount="3"
+        android:rowCount="1"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今天"
+                ></TextView>
+            <ImageView
+                android:id="@+id/iv_today_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@mipmap/qingtian"></ImageView>
+            <TextView
+                android:id="@+id/tv_today_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6度/12度"
+                ></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="明天"
+                ></TextView>
+            <ImageView
+                android:id="@+id/iv_tomorrow_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@mipmap/qingtian"></ImageView>
+            <TextView
+                android:id="@+id/tv_tomorrow_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6度/12度"
+                ></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="后天"
+                ></TextView>
+            <ImageView
+                android:id="@+id/iv_tomorrowrow_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@mipmap/qingtian"></ImageView>
+            <TextView
+                android:id="@+id/tv_tomorrowrow_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6度/12度"
+                ></TextView>
+        </LinearLayout>
+    </GridLayout>
+
+</LinearLayout>

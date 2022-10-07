@@ -36,6 +36,8 @@ public class DeviceDetailActivity extends BaseActivity {
     private EZPlayer player;
     private String deviceSerial;
 
+    private String lat;
+    private String lng;
 
     private String[] mTitles = {"云控", "天气", "历史", "回放"};
     private ArrayList<Fragment> fragments = new ArrayList<>();
@@ -50,7 +52,9 @@ public class DeviceDetailActivity extends BaseActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        deviceSerial =(String) extras.get("deviceSerial");
+        deviceSerial =extras.get("deviceSerial").toString();
+        lat =extras.get("lat").toString();
+        lng =extras.get("lng").toString();
         EkPlayerInit();
         initTabs();
     }
@@ -61,7 +65,7 @@ public class DeviceDetailActivity extends BaseActivity {
 
 //        添加fragment
         fragments.add(DetailControlFragment.newInstance(deviceSerial));
-        fragments.add(DetailWeatherFragment.newInstance());
+        fragments.add(DetailWeatherFragment.newInstance(lng, lat));
         fragments.add(DetailHistoryFragment.newInstance());
         fragments.add(DetailPlaybackFragment.newInstance());
 

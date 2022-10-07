@@ -43,7 +43,11 @@ public class Api extends BaseActivity {
                 .sslSocketFactory(SSLSocketManager.getSSLSocketFactory())//配置
                 .hostnameVerifier(SSLSocketManager.getHostnameVerifier())//配置
                 .build();
-        requestUrl = ApiConfig.BASE_URl + url;
+        if(url.indexOf("weather") > -1) {
+            requestUrl = ApiConfig.BASE_URl1 + url;
+        }else {
+            requestUrl = ApiConfig.BASE_URl + url;
+        }
         mParams = params;
         return api;
     }
@@ -65,11 +69,8 @@ public class Api extends BaseActivity {
         //第三步创建Rquest
         Request request = new Request.Builder()
                 .url(requestUrl)
-//                .addHeader("contentType", "application/json;charset=UTF-8")
                 .addHeader("contentType", "application/x-www-form-urlencoded")
                 .addHeader("x-access-token", token)
-//                .addHeader("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ4enhfbHQiLCJyb2xlX2lkIjoiYWJjZCIsImV4cCI6MTY2NTAzODUyNn0.L13Du-v1uUcp3nD0plMUT_T5SMHrIfUdQ7WyNYomnLc")
-//                .post(requestBodyJson)
                 .post(body)
                 .build();
 
@@ -92,17 +93,14 @@ public class Api extends BaseActivity {
         });
     }
 
-//    public void getRequest(Context context, final TtitCallback callback) {
-        public void getRequest(final TtitCallback callback) {
-//        SharedPreferences sp = context.getSharedPreferences("sp_ttit", MODE_PRIVATE);
-//        String token = sp.getString("token", "");
+    public void getRequest(Context context, final TtitCallback callback) {
+
         String url = getAppendUrl(requestUrl, mParams);
         Request request = new Request.Builder()
                 .url(url)
-//                .addHeader("token", token)
-                .addHeader("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ4enhfbHQiLCJyb2xlX2lkIjoiYWJjZCIsImV4cCI6MTY2NTAzODUyNn0.L13Du-v1uUcp3nD0plMUT_T5SMHrIfUdQ7WyNYomnLc")
                 .get()
                 .build();
+
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
