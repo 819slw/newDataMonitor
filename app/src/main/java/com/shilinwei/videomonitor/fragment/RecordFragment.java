@@ -77,7 +77,7 @@ public class RecordFragment extends BaseFragment {
         String depart_id = loginResponseEntity.getData().getDepart_id();
         params.put("depart_id", depart_id);
         params.put("page", "1");
-        params.put("pageSize", "5");
+        params.put("pageSize", "30");
 
 
         Api.config(ApiConfig.GetLogList, params).postRequest(getActivity(),new TtitCallback() {

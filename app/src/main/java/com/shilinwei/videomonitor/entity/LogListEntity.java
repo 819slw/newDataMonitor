@@ -4,14 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 public class LogListEntity implements Serializable {
-
     private String id;
     private String deviceSerial;
     private String deviceName;
-    private List<LogListEntity.DetailDTO> detail;
+    private List<DetailDTO> detail;
     private int push_type;
     private String type_name;
     private String create_at;
+    private String lng;
+    private String lat;
 
     public String getId() {
         return id;
@@ -37,11 +38,11 @@ public class LogListEntity implements Serializable {
         this.deviceName = deviceName;
     }
 
-    public List<LogListEntity.DetailDTO> getDetail() {
+    public List<DetailDTO> getDetail() {
         return detail;
     }
 
-    public void setDetail(List<LogListEntity.DetailDTO> detail) {
+    public void setDetail(List<DetailDTO> detail) {
         this.detail = detail;
     }
 
@@ -67,6 +68,22 @@ public class LogListEntity implements Serializable {
 
     public void setCreate_at(String create_at) {
         this.create_at = create_at;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
     public static class DetailDTO {

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class LogListResponseEntity implements Serializable {
 
+
     private int code;
     private DataDTO data;
     private String msg;

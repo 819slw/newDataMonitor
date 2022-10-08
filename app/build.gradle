@@ -48,4 +48,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     implementation 'io.github.ezviz-open:ezviz-sdk:4.20.1'
+
+
+//    地图
+    implementation 'com.amap.api:3dmap:9.2.0'
+    //定位功能
+    implementation 'com.amap.api:location:6.1.0'
 }

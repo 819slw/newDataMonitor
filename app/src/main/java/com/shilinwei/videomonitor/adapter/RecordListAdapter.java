@@ -51,12 +51,12 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             @Override
             public void onClick(View view) {
                 String deviceSerial = datas.get(index).getDeviceSerial();
-//                String lat = datas.get(index).getLat();
-//                String lng = datas.get(index).getLng();
+                String lat = datas.get(index).getLat();
+                String lng = datas.get(index).getLng();
                 Intent intent = new Intent(mContext, DeviceDetailActivity.class);
                 intent.putExtra("deviceSerial", deviceSerial);
-//                intent.putExtra("lat", lat);
-//                intent.putExtra("lng", lng);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lng", lng);
                 mContext.startActivity(intent);
             }
         });
