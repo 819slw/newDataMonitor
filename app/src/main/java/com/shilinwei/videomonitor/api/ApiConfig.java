@@ -17,4 +17,6 @@ public class ApiConfig {
     public static final String threeDayWeather = "/v7/weather/3d"; // 天气
     public static final String GetLogList = "/api/v1/mobile/log/list"; // 天气
     public static final String deltetByIdDevice = "/api/v1/mobile/log/deltetById"; // 天气
+    public static final String getLogByDeviceSerialWithTime = "/api/v1/mobile/log/getLogByDeviceSerialWithTime"; // 日志
+    public static final String getAlarmByDeviceSerialWithTime = "/api/v1/mobile/log/getAlarmByDeviceSerialWithTime"; // 警告
 }

@@ -57,4 +57,6 @@ dependencies {
 
 //    时间日期选择器
     implementation 'com.github.jzmanu:MDatePickerSample:v1.0.6'
+
+    implementation 'com.github.FlyJingFish:OpenImage:latest.release.here'
 }

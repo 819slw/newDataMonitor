@@ -66,7 +66,7 @@ public class DeviceDetailActivity extends BaseActivity {
 //        添加fragment
         fragments.add(DetailControlFragment.newInstance(deviceSerial));
         fragments.add(DetailWeatherFragment.newInstance(lng, lat));
-        fragments.add(DetailHistoryFragment.newInstance());
+        fragments.add(DetailHistoryFragment.newInstance(deviceSerial));
         fragments.add(DetailPlaybackFragment.newInstance(deviceSerial));
 
 //        预加载fragment，防止快速点击时会崩溃
