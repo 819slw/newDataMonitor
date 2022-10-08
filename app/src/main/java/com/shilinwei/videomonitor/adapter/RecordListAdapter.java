@@ -1,7 +1,10 @@
 package com.shilinwei.videomonitor.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +17,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.activity.DeviceDetailActivity;
+import com.shilinwei.videomonitor.api.Api;
+import com.shilinwei.videomonitor.api.ApiConfig;
+import com.shilinwei.videomonitor.api.TtitCallback;
 import com.shilinwei.videomonitor.entity.LogListEntity;
+import com.shilinwei.videomonitor.entity.LoginResponseEntity;
+import com.shilinwei.videomonitor.entity.OutDestructionEntity;
+import com.shilinwei.videomonitor.entity.OutDestructionResponseEntity;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -60,6 +71,46 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 mContext.startActivity(intent);
             }
         });
+
+        vh.bt_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("Verbose","点击");
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("确定要删除吗?");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        String id = datas.get(index).getId();
+                        HashMap<String, String> params = new HashMap<>();
+                        params.put("id", id);
+                        Api.config(ApiConfig.deltetByIdDevice, params).postRequest(mContext,new TtitCallback() {
+                            @Override
+                            public void onSuccess(String res) {
+                            }
+
+                            @Override
+                            public void onFailure(Exception e) {
+                            }
+                        });
+                        datas.remove(index);
+                        notifyItemRemoved(i);
+                        notifyItemRangeChanged(0, datas.size());
+                    }
+                });
+
+                builder.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.e("sa","取消");
+                    }
+                });
+
+                builder.show();
+            }
+        });
+
     }
 
     @Override
@@ -76,6 +127,7 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         private TextView tv_date;
         private TextView tv_status;
         private Button bt_preview;
+        private Button bt_del;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -84,6 +136,7 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             tv_date = view.findViewById(R.id.tv_date);
             tv_status = view.findViewById(R.id.tv_status);
             bt_preview = view.findViewById(R.id.bt_preview);
+            bt_del = view.findViewById(R.id.bt_del);
         }
     }
 

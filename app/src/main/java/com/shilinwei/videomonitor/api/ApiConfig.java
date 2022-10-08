@@ -16,4 +16,5 @@ public class ApiConfig {
     public static final String nowWeather = "/v7/weather/now"; // 天气
     public static final String threeDayWeather = "/v7/weather/3d"; // 天气
     public static final String GetLogList = "/api/v1/mobile/log/list"; // 天气
+    public static final String deltetByIdDevice = "/api/v1/mobile/log/deltetById"; // 天气
 }
