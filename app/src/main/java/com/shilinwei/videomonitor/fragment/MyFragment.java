@@ -20,6 +20,9 @@ import com.shilinwei.videomonitor.entity.LoginResponseEntity;
  * create an instance of this fragment.
  */
 public class MyFragment extends BaseFragment {
+
+    private View switch_account;
+
     public MyFragment() {
         // Required empty public constructor
     }
@@ -40,20 +43,27 @@ public class MyFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_my, container, false);
         TextView name = v.findViewById(R.id.tv_name);
         TextView account = v.findViewById(R.id.tv_account);
-
+        switch_account = v.findViewById(R.id.switch_account);
         String userInfo = findByKey("userInfo");
         String accountVal = findByKey("account");
         LoginResponseEntity loginResponseEntity = new Gson().fromJson(userInfo, LoginResponseEntity.class);
         name.setText(loginResponseEntity.getData().getNick_name());
         account.setText(accountVal);
+        switchAccount();
         return v;
     }
 
     public void switchAccount() {
-        removeByKey("token");
-        removeByKey("userInfo");
-        removeByKey("account");
-        navigateTo(LoginActivity.class);
+        switch_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeByKey("token");
+                removeByKey("userInfo");
+                removeByKey("account");
+                navigateTo(LoginActivity.class);
+            }
+        });
+
     }
 
 
