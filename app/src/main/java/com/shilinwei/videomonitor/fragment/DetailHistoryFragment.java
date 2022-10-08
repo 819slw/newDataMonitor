@@ -1,5 +1,6 @@
 package com.shilinwei.videomonitor.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.himangi.imagepreview.ImagePreviewActivity;
+import com.himangi.imagepreview.PreviewFile;
 import com.manu.mdatepicker.MDatePicker;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.adapter.RecordListAdapter;
@@ -50,6 +53,9 @@ public class DetailHistoryFragment extends BaseFragment {
     private Button bt_startPlayer;
     private LinearLayout ll_box;
 
+    private ArrayList<PreviewFile> logPreviewFiles;
+//    private int logIndex;
+
 
     //        定时部分
 
@@ -64,7 +70,8 @@ public class DetailHistoryFragment extends BaseFragment {
 
     private Button bt_startPlayer1;
     private LinearLayout ll_box1;
-
+    private ArrayList<PreviewFile> alarmPreviewFiles;
+//    private int alarmIndex;
 
     public DetailHistoryFragment() {
     }
@@ -247,18 +254,30 @@ public class DetailHistoryFragment extends BaseFragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println("---------------");
-                            System.out.println(list1.size());
+                            int alarmIndex = -1;
+                            alarmPreviewFiles = new ArrayList<>();
                             for (int i = 0; i < list1.size(); i++) {
-                                ImageView image = new ImageView(getActivity());
-                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(400, 200);
-                                image.setLayoutParams(layoutParams);
-                                String pic_url = list1.get(i).getDetail().get(0).getPic_url();
-                                if(pic_url == null || "".equals(pic_url)) {
-                                    continue;
+                                String deviceName = list1.get(i).getDeviceName();
+                                for (int j = 0; j < list1.get(i).getDetail().size(); j++) {
+                                    String pic_url = list1.get(i).getDetail().get(j).getPic_url();
+                                    ImageView image = new ImageView(getActivity());
+                                    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(400, 200);
+                                    image.setLayoutParams(layoutParams);
+                                    if(pic_url == null || "".equals(pic_url)) {
+                                        continue;
+                                    }
+                                    Glide.with(getActivity()).load(pic_url).into(image);
+                                    ll_box.addView(image);
+                                    alarmPreviewFiles.add(new PreviewFile(pic_url,deviceName));
+                                    alarmIndex++;
+                                    int finalAlarmIndex = alarmIndex + 1;
+                                    image.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            previewImage(alarmPreviewFiles, finalAlarmIndex);
+                                        }
+                                    });
                                 }
-                                Glide.with(getActivity()).load(pic_url).into(image);
-                                ll_box.addView(image);
                             }
                         }
                     });
@@ -292,8 +311,12 @@ public class DetailHistoryFragment extends BaseFragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            int logIndex = -1;
+                            logPreviewFiles = new ArrayList<>();
                             for (int i = 0; i < list1.size(); i++) {
-                                ImageView image = new ImageView(getActivity());
+                                String deviceName = list1.get(i).getDeviceName();
+                                for (int j = 0; j < list1.get(i).getDetail().size(); j++) {
+                                    ImageView image = new ImageView(getActivity());
                                 FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(400, 200);
                                 image.setLayoutParams(layoutParams);
                                 String pic_url = list1.get(i).getDetail().get(0).getPic_url();
@@ -302,6 +325,19 @@ public class DetailHistoryFragment extends BaseFragment {
                                 }
                                 Glide.with(getActivity()).load(pic_url).into(image);
                                 ll_box1.addView(image);
+
+                                logPreviewFiles.add(new PreviewFile(pic_url,deviceName));
+                                    logIndex++;
+                                    int finalLogIndex = logIndex + 1;
+                                image.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        System.out.println(finalLogIndex);
+                                        System.out.println(logPreviewFiles.size());
+                                        previewImage(logPreviewFiles, finalLogIndex);
+                                    }
+                                });
+                                }
                             }
                         }
                     });
