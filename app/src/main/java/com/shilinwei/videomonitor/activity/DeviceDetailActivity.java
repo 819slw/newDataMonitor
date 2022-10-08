@@ -67,7 +67,7 @@ public class DeviceDetailActivity extends BaseActivity {
         fragments.add(DetailControlFragment.newInstance(deviceSerial));
         fragments.add(DetailWeatherFragment.newInstance(lng, lat));
         fragments.add(DetailHistoryFragment.newInstance());
-        fragments.add(DetailPlaybackFragment.newInstance());
+        fragments.add(DetailPlaybackFragment.newInstance(deviceSerial));
 
 //        预加载fragment，防止快速点击时会崩溃
         viewPager.setOffscreenPageLimit(fragments.size());
@@ -102,7 +102,6 @@ public class DeviceDetailActivity extends BaseActivity {
     public void EZreadyStart() {
         player  = EZOpenSDK.getInstance().createPlayer(deviceSerial,1);
         player.setSurfaceHold(viewById.getHolder());
-        player.startRealPlay();
     }
 
     private void EZAddSvCallBack(){
