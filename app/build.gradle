@@ -54,4 +54,7 @@ dependencies {
     implementation 'com.amap.api:3dmap:9.2.0'
     //定位功能
     implementation 'com.amap.api:location:6.1.0'
+
+//    时间日期选择器
+    implementation 'com.github.jzmanu:MDatePickerSample:v1.0.6'
 }
