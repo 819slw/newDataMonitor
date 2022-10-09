@@ -1,5 +1,6 @@
 package com.shilinwei.videomonitor.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -60,7 +61,12 @@ public class MyFragment extends BaseFragment {
                 removeByKey("token");
                 removeByKey("userInfo");
                 removeByKey("account");
-                navigateTo(LoginActivity.class);
+
+//                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Intent intent = new Intent();
+                intent.setAction("com.shilinwei.videomonitor.activity.LoginActivity");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
