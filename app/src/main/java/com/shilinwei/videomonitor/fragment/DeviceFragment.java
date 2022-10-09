@@ -24,6 +24,8 @@ import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
 import com.shilinwei.videomonitor.entity.TabEntity;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class DeviceFragment extends Fragment {
@@ -34,7 +36,11 @@ public class DeviceFragment extends Fragment {
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
 
+    Timer timer;
+
     private EditText editText;
+
+    private TimerTask timerTask;
 
     public DeviceFragment() {
     }
@@ -70,8 +76,20 @@ public class DeviceFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                System.out.println("--------1");
-                System.out.println(editable.toString());
+
+                if(timer != null) {
+                    timer.cancel();
+                }
+                timer = new Timer();
+                timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        timer = null;
+                        System.out.println("开始触发eventbus");
+                    }
+                };
+
+                timer.schedule(timerTask, 500);
             }
         });
         return v;
