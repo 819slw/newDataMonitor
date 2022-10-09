@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.shilinwei.videomonitor.MainActivity;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.activity.LoginActivity;
 import com.shilinwei.videomonitor.entity.LoginResponseEntity;
@@ -61,12 +62,7 @@ public class MyFragment extends BaseFragment {
                 removeByKey("token");
                 removeByKey("userInfo");
                 removeByKey("account");
-
-//                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                Intent intent = new Intent();
-                intent.setAction("com.shilinwei.videomonitor.activity.LoginActivity");
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                navigateTo(MainActivity.class);
             }
         });
 

@@ -21,6 +21,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import com.shilinwei.videomonitor.MainActivity;
 import com.shilinwei.videomonitor.activity.BaseActivity;
 import com.shilinwei.videomonitor.activity.LoginActivity;
 import com.shilinwei.videomonitor.util.StringUtils;
@@ -57,7 +58,7 @@ public class Api extends BaseActivity {
         String token = sp.getString("token", "");
 
         if(token == null || token.length() <=0 && requestUrl.indexOf(ApiConfig.LOGIN) == -1) {
-            navigateTo(LoginActivity.class);
+            navigateTo(MainActivity.class);
         }
 
         FormBody.Builder formBody = new FormBody.Builder();//创建表单请求体
