@@ -65,4 +65,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
 
+//    EventBus
+    implementation 'org.greenrobot:eventbus:3.0.0'
+
 }

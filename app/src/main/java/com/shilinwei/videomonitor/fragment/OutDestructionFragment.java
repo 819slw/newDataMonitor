@@ -27,6 +27,10 @@ import com.shilinwei.videomonitor.entity.LoginResponseEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionResponseEntity;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -56,6 +60,7 @@ public class OutDestructionFragment extends BaseFragment {
 
     RecyclerView recyclerView = null;
     SwipeRefreshLayout mSwipeRefreshLayout;
+    List<OutDestructionEntity> deviceList;
 
 
     public OutDestructionFragment() {
@@ -95,9 +100,36 @@ public class OutDestructionFragment extends BaseFragment {
         recyclerView = v.findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = v.findViewById(R.id.srl);
         initRefreshListener();
+        EventBus.getDefault().register(this);
         return v;
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(String text) {
+        System.out.println("接收到了:" + text);
+        if (text.equals("")) {
+            getOutDestructionList();
+            return;
+        }
+//        开始对数据进行过滤
+        List<OutDestructionEntity> list1 = new ArrayList<>();
+        for (int i = 0; i < deviceList.size(); i++) {
+            String deviceSerial = deviceList.get(i).getDeviceSerial();
+            String deviceName = deviceList.get(i).getDeviceName();
+            if(deviceSerial.indexOf(text) > -1 || deviceName.indexOf(text) > -1) {
+                list1.add(deviceList.get(i));
+            }
+        }
+        OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1);
+        recyclerView.setAdapter(outDestructionAdapter);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -127,8 +159,8 @@ public class OutDestructionFragment extends BaseFragment {
                 OutDestructionResponseEntity list = new Gson().fromJson(res, OutDestructionResponseEntity.class);
                 if(list != null) {
                     mSwipeRefreshLayout.setRefreshing(false);
-                    List<OutDestructionEntity> list1 = list.getData().getList();
-                    OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1);
+                    deviceList = list.getData().getList();
+                    OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), deviceList);
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

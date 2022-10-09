@@ -23,6 +23,8 @@ import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.adapter.MyPagerAdapter;
 import com.shilinwei.videomonitor.entity.TabEntity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -85,7 +87,8 @@ public class DeviceFragment extends Fragment {
                     @Override
                     public void run() {
                         timer = null;
-                        System.out.println("开始触发eventbus");
+                        EventBus.getDefault().post(editable.toString());
+                        System.out.println("发送eventbus");
                     }
                 };
 
