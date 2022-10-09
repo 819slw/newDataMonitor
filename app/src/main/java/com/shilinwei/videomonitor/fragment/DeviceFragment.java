@@ -7,9 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -28,6 +33,8 @@ public class DeviceFragment extends Fragment {
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
+
+    private EditText editText;
 
     public DeviceFragment() {
     }
@@ -48,6 +55,25 @@ public class DeviceFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_device, container, false);
         viewPager = v.findViewById(R.id.deviceViewPager);
         slidingTabLayout = v.findViewById(R.id.slidingTabLayout);
+        editText = v.findViewById(R.id.et_search);
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                System.out.println("--------1");
+                System.out.println(editable.toString());
+            }
+        });
         return v;
     }
 
