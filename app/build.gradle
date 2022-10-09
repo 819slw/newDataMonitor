@@ -60,5 +60,9 @@ dependencies {
 
     implementation 'com.github.himangipatel:ImagesPreview:0.0.5'
 
-//    implementation 'com.github.FlyJingFish:OpenImage:latest.release.here'
+
+    
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
+
 }

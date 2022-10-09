@@ -60,7 +60,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         Glide.with(mContext).load(outDestructionEntity.getPoster()).into(vh.poster);
 
 
-        vh.rlBox.setOnClickListener(new View.OnClickListener() {
+        vh.iv_play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String deviceSerial = datas.get(index).getDeviceSerial();
@@ -89,6 +89,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         private TextView circle;
         private TextView isOnline;
         private RelativeLayout rlBox;
+        private ImageView iv_play_btn;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -97,6 +98,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             circle = view.findViewById(R.id.tv_circle);
             isOnline = view.findViewById(R.id.tv_isonline);
             rlBox = view.findViewById(R.id.rl_box);
+            iv_play_btn = view.findViewById(R.id.iv_play_btn);
         }
 
     }

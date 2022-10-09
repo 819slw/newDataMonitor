@@ -7,7 +7,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:id="@+id/rl_box"
-    android:layout_height="140dp">
+    android:layout_height="180dp">
 
     <ImageView
         android:id="@+id/iv_video_poster"
@@ -61,6 +61,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iv_play_btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"

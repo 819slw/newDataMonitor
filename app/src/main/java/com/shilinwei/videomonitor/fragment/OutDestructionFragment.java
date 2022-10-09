@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,8 @@ import javax.net.ssl.X509TrustManager;
 public class OutDestructionFragment extends BaseFragment {
 
     RecyclerView recyclerView = null;
-    public Context mContext;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
 
     public OutDestructionFragment() {
         // Required empty public constructor
@@ -70,12 +72,29 @@ public class OutDestructionFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
+    public void initRefreshListener() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                List<OutDestructionEntity> list1 = new ArrayList<>();
+                OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1);
+                recyclerView.setAdapter(outDestructionAdapter);
+                getOutDestructionList();
+            }
+        });
+        mSwipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_out_destruction, container, false);
         recyclerView = v.findViewById(R.id.recyclerView);
-
+        mSwipeRefreshLayout = v.findViewById(R.id.srl);
+        initRefreshListener();
         return v;
     }
 
@@ -107,6 +126,7 @@ public class OutDestructionFragment extends BaseFragment {
             public void onSuccess(String res) {
                 OutDestructionResponseEntity list = new Gson().fromJson(res, OutDestructionResponseEntity.class);
                 if(list != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
                     List<OutDestructionEntity> list1 = list.getData().getList();
                     OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1);
 
@@ -121,8 +141,8 @@ public class OutDestructionFragment extends BaseFragment {
 
             @Override
             public void onFailure(Exception e) {
-                System.out.println("失败");
-                System.out.println(e);
+                mSwipeRefreshLayout.setRefreshing(false);
+                showToastSync("请求失败,请检查网络");
             }
         });
     }
