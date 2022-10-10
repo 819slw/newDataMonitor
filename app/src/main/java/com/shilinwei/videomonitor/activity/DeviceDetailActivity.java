@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -52,6 +55,9 @@ public class DeviceDetailActivity extends BaseActivity {
     private String lat;
     private String lng;
 
+    private Boolean isLoad = false;
+
+
     private String[] mTitles = {"云控", "天气", "历史", "回放"};
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ViewPager viewPager;
@@ -60,7 +66,6 @@ public class DeviceDetailActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
 
@@ -75,13 +80,6 @@ public class DeviceDetailActivity extends BaseActivity {
         }
 
         public boolean isWideScrren() {
-
-
-//            DisplayMetrics dm = new DisplayMetrics();
-//            getWindowManager().getDefaultDisplay().getMetrics(dm);
-//            return dm.widthPixels > dm.heightPixels;
-
-
             Display display = mWindowManager.getDefaultDisplay();
             Point pt = new Point();
             display.getSize(pt);
@@ -133,7 +131,12 @@ public class DeviceDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String isLoadFullScreen = findByKey("isLoadFullScreen");
+        if(!isLoadFullScreen.equals("") && isLoadFullScreen.equals("1")) {
+            setStatusBarTranslucent(DeviceDetailActivity.this);
+        }
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_device_detail);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -154,16 +157,29 @@ public class DeviceDetailActivity extends BaseActivity {
                 getWindowManager().getDefaultDisplay().getMetrics(dm);
                 System.out.println(isWideScrren);
                 if(isWideScrren) {
+                    setLocalstorage("isLoadFullScreen", "0");
                     viewById.setSurfaceSize(dm.widthPixels, 0);
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }else {
+                    setLocalstorage("isLoadFullScreen", "1");
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                     viewById.setSurfaceSize(dm.widthPixels, dm.heightPixels);
                 }
             }
         });
-
     }
+
+    public static void setStatusBarTranslucent(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = activity.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+
 
     public void initTabs() {
         viewPager = findViewById(R.id.viewpager);
