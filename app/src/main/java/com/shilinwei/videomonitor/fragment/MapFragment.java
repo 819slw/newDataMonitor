@@ -97,7 +97,9 @@ public class MapFragment extends BaseFragment {
                         longitude = aMapLocation.getLongitude();//获取经度
                         LatLng latLng1 = new LatLng(latitude ,longitude);
                         if(times == 0) {
-                            aMap.addMarker(new MarkerOptions().position(latLng1).title("我在这")).setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.dingweiown));
+
+                            Marker marker = aMap.addMarker(new MarkerOptions().position(latLng1).title("我在这"));
+                            marker.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.dingweiown));
                             aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(latitude, longitude)));
                             times = 1;
                         }
