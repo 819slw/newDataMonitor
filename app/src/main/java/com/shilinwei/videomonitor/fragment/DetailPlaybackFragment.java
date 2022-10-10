@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.manu.mdatepicker.MDatePicker;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.entity.LoginResponseEntity;
+import com.shilinwei.videomonitor.util.EZUIPlayerView;
 import com.videogo.openapi.EZOpenSDK;
 import com.videogo.openapi.EZPlayer;
 
@@ -30,7 +31,7 @@ import javax.security.auth.callback.CallbackHandler;
 
 public class DetailPlaybackFragment extends BaseFragment {
 
-    private SurfaceView viewById;
+    private EZUIPlayerView viewById;
     private EZPlayer player;
     private String deviceSerial;
 
@@ -100,6 +101,8 @@ public class DetailPlaybackFragment extends BaseFragment {
                     showToastSync("开始时间必须大于结束时间");
                     return;
                 }
+
+                viewById.setVisibility(View.VISIBLE);
                 EkPlayerInit();
             }
         });
@@ -177,11 +180,11 @@ public class DetailPlaybackFragment extends BaseFragment {
 
     public void EZreadyStart() {
         player = EZOpenSDK.getInstance().createPlayer(deviceSerial, 1);
-        player.setSurfaceHold(viewById.getHolder());
+        player.setSurfaceHold(viewById.getSurfaceView().getHolder());
     }
 
     private void EZAddSvCallBack() {
-        viewById.getHolder().addCallback(new SurfaceHolder.Callback() {
+        viewById.getSurfaceView().getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder holder) {
                 if (player != null) {

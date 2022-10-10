@@ -50,9 +50,18 @@
         android:text="开始回放"></Button>
 
 
-    <SurfaceView
-        android:id="@+id/mSv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/play_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/play_topbar">
+        <com.shilinwei.videomonitor.util.EZUIPlayerView
+            android:id="@+id/mSv"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"></com.shilinwei.videomonitor.util.EZUIPlayerView>
+    </RelativeLayout>
 
 </LinearLayout>
