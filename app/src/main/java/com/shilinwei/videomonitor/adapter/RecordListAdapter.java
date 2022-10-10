@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.himangi.imagepreview.ImagePreviewActivity;
+import com.himangi.imagepreview.PreviewFile;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.activity.DeviceDetailActivity;
 import com.shilinwei.videomonitor.api.Api;
@@ -28,6 +30,7 @@ import com.shilinwei.videomonitor.entity.LoginResponseEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionResponseEntity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +52,14 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return viewHolder;
     }
 
+
+    public void previewImage(ArrayList<PreviewFile> previewFiles, int index) {
+        Intent intent = new Intent(mContext, ImagePreviewActivity.class);
+        intent.putExtra(ImagePreviewActivity.IMAGE_LIST, previewFiles);
+        intent.putExtra(ImagePreviewActivity.CURRENT_ITEM, index);
+        mContext.startActivity(intent);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder vh = (ViewHolder) holder;
@@ -58,6 +69,26 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         vh.tv_date.setText("日期: " + logListEntity.getCreate_at());
         vh.tv_status.setText("推送状态: " + logListEntity.getType_name());
         Glide.with(mContext).load(logListEntity.getDetail().get(0).getPic_url()).into(vh.iv_pic);
+
+        vh.iv_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogListEntity logListEntity = datas.get(index);
+                ArrayList<PreviewFile> logPreviewFiles = new ArrayList<>();
+                for (int i = 0; i < logListEntity.getDetail().size(); i++) {
+                    LogListEntity.DetailDTO detailDTO = logListEntity.getDetail().get(i);
+                    if(detailDTO != null) {
+                        String pic_url = detailDTO.getPic_url();
+                        if(!pic_url.equals("")) {
+                            PreviewFile previewFile = new PreviewFile(pic_url, logListEntity.getDeviceName());
+                            logPreviewFiles.add(previewFile);
+                        }
+                    }
+                }
+                previewImage(logPreviewFiles, 0);
+            }
+        });
+
         vh.bt_preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

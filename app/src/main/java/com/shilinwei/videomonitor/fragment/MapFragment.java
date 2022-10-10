@@ -37,7 +37,6 @@ import com.shilinwei.videomonitor.entity.OutDestructionResponseEntity;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class MapFragment extends BaseFragment {
 
 //    地图配置的文章： https://blog.csdn.net/weixin_44226181/article/details/126278237

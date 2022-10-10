@@ -332,8 +332,6 @@ public class DetailHistoryFragment extends BaseFragment {
                                 image.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        System.out.println(finalLogIndex);
-                                        System.out.println(logPreviewFiles.size());
                                         previewImage(logPreviewFiles, finalLogIndex);
                                     }
                                 });
