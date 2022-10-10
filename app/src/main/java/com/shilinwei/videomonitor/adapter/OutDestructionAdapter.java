@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.activity.DeviceDetailActivity;
+import com.shilinwei.videomonitor.activity.DeviceInspectActivity;
 import com.shilinwei.videomonitor.activity.LoginActivity;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 
@@ -60,6 +61,16 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         Glide.with(mContext).load(outDestructionEntity.getPoster()).into(vh.poster);
 
 
+        vh.v_intoSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, DeviceInspectActivity.class);
+                intent.putExtra("deviceName", outDestructionEntity.getDeviceName());
+                intent.putExtra("deviceSerial", outDestructionEntity.getDeviceSerial());
+                mContext.startActivity(intent);
+            }
+        });
+
         vh.iv_play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +101,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         private TextView isOnline;
         private RelativeLayout rlBox;
         private ImageView iv_play_btn;
+        private View v_intoSet;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -99,6 +111,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             isOnline = view.findViewById(R.id.tv_isonline);
             rlBox = view.findViewById(R.id.rl_box);
             iv_play_btn = view.findViewById(R.id.iv_play_btn);
+            v_intoSet = view.findViewById(R.id.v_intoSet);
         }
 
     }

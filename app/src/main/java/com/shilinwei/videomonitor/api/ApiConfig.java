@@ -19,4 +19,6 @@ public class ApiConfig {
     public static final String deltetByIdDevice = "/api/v1/mobile/log/deltetById"; // 天气
     public static final String getLogByDeviceSerialWithTime = "/api/v1/mobile/log/getLogByDeviceSerialWithTime"; // 日志
     public static final String getAlarmByDeviceSerialWithTime = "/api/v1/mobile/log/getAlarmByDeviceSerialWithTime"; // 警告
+    public static final String resetDevice = "/api/v1/mobile/device/special/reset"; // 自检
+    public static final String updateDevice = "/api/v1/mobile/device/name/update"; // 警告
 }
