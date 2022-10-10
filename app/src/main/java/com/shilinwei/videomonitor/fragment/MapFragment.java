@@ -17,16 +17,16 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.MapsInitializer;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+
 import com.google.gson.Gson;
 import com.shilinwei.videomonitor.R;
 import com.shilinwei.videomonitor.activity.DeviceDetailActivity;
-import com.shilinwei.videomonitor.adapter.OutDestructionAdapter;
 import com.shilinwei.videomonitor.api.Api;
 import com.shilinwei.videomonitor.api.ApiConfig;
 import com.shilinwei.videomonitor.api.TtitCallback;
@@ -34,8 +34,6 @@ import com.shilinwei.videomonitor.entity.LoginResponseEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionEntity;
 import com.shilinwei.videomonitor.entity.OutDestructionResponseEntity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,6 +52,8 @@ public class MapFragment extends BaseFragment {
 
     public double latitude;
     public double longitude;
+
+    public int times = 0;
 
 
     public MapFragment() {
@@ -97,8 +97,11 @@ public class MapFragment extends BaseFragment {
                         latitude = aMapLocation.getLatitude();//获取纬度
                         longitude = aMapLocation.getLongitude();//获取经度
                         LatLng latLng1 = new LatLng(latitude ,longitude);
-                        aMap.addMarker(new MarkerOptions().position(latLng1).title("我在这"));
-                        aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(latitude, longitude)));
+                        if(times == 0) {
+                            aMap.addMarker(new MarkerOptions().position(latLng1).title("我在这")).setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.dingweiown));
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(latitude, longitude)));
+                            times = 1;
+                        }
                     } else {
                         System.out.println("获取失败2");
                         System.out.println(aMapLocation.getErrorInfo());
@@ -201,6 +204,7 @@ public class MapFragment extends BaseFragment {
                                 }
                                 LatLng latLng = new LatLng(Double.parseDouble(lat) ,Double.parseDouble(lng));
                                 final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(deviceName).snippet("经纬度:" + lat +","+ lng));
+                                marker.setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.dingwei));
                                 marker.setObject(deviceList.get(i));
                                 aMap.setOnInfoWindowClickListener(infoWindowClickListener);
                                 aMap.setOnMarkerClickListener(markerClickListener);
