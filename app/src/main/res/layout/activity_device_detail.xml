@@ -7,10 +7,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.DeviceDetailActivity">
-    <SurfaceView
-        android:id="@+id/mSv"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+
+    <RelativeLayout
+        android:id="@+id/play_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/play_topbar">
+        <com.shilinwei.videomonitor.util.EZUIPlayerView
+            android:id="@+id/mSv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"></com.shilinwei.videomonitor.util.EZUIPlayerView>
+    </RelativeLayout>
+
+
 
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/slidingTabLayout"
