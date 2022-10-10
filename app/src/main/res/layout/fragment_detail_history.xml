@@ -13,11 +13,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:padding="16dp"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="告警推送"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/gaojing"></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:textColor="#d81e06"
+                android:text="告警推送"></TextView>
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_startTime"
@@ -59,7 +73,7 @@
             android:layout_marginRight="16dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="开始回放"></Button>
+            android:text="开始查询"></Button>
 
 
         <HorizontalScrollView
@@ -74,15 +88,32 @@
         </HorizontalScrollView>
     </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eee"></View>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:padding="16dp"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="告警推送"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/dingshi"></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/purple_200"
+                android:layout_marginLeft="5dp"
+                android:text="定时推送"></TextView>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_startTime1"
@@ -124,7 +155,7 @@
             android:layout_marginRight="16dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="开始回放"></Button>
+            android:text="开始查询"></Button>
 
 
         <HorizontalScrollView
