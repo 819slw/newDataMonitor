@@ -76,19 +76,35 @@
             android:layout_marginBottom="16dp"
             android:text="开始查询"></Button>
 
-
-        <HorizontalScrollView
-            android:id="@+id/sv_box"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/ll_box"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_200"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_nodata"
+                android:layout_height="120dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"></LinearLayout>
-        </HorizontalScrollView>
+                android:text="暂无数据"
+                android:background="@color/purple_200"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:gravity="center"></TextView>
+
+            <HorizontalScrollView
+                android:id="@+id/sv_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/ll_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:orientation="horizontal"></LinearLayout>
+            </HorizontalScrollView>
+        </RelativeLayout>
     </LinearLayout>
 
         <View
@@ -161,19 +177,39 @@
             android:text="开始查询"></Button>
 
 
-        <HorizontalScrollView
-            android:id="@+id/sv_box1"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/ll_box1"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_200"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_nodata1"
+                android:layout_height="120dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:text="暂无数据"
                 android:background="@color/purple_200"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:orientation="horizontal"></LinearLayout>
-        </HorizontalScrollView>
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:gravity="center"></TextView>
+
+            <HorizontalScrollView
+                android:id="@+id/sv_box1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/ll_box1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:orientation="horizontal"></LinearLayout>
+            </HorizontalScrollView>
+        </RelativeLayout>
+
+
+
+
     </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -27,6 +27,11 @@ public class BaseFragment extends Fragment {
         edit.commit();
     }
 
+    public void showToast(String msg) {
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+
     public void showToastSync(String msg) {
         Looper.prepare();
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
