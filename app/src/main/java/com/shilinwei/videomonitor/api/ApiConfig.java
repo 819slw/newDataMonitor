@@ -3,6 +3,7 @@ package com.shilinwei.videomonitor.api;
 public class ApiConfig {
     public static final int PAGE_SIZE = 5;
     public static final String BASE_URl = "https://www.xzxdlkj.com:8890";
+
     public static final String BASE_URl1 = "https://devapi.qweather.com";
     public static final String LOGIN = "/api/v1/mobile/user/login"; //登录
     public static final String DeviceList = "/api/v1/mobile/device/list"; // 设备列表
@@ -15,7 +16,7 @@ public class ApiConfig {
     public static final String MoveEndPreset = "/api/v1/mobile/device/ptz/stop"; // 预设点列表
     public static final String nowWeather = "/v7/weather/now"; // 天气
     public static final String threeDayWeather = "/v7/weather/3d"; // 天气
-    public static final String GetLogList = "/api/v1/mobile/log/list"; // 天气
+    public static final String GetLogList = "/api/v1/mobile/log/list"; // 定时推送的数据
     public static final String deltetByIdDevice = "/api/v1/mobile/log/deltetById"; // 天气
     public static final String getLogByDeviceSerialWithTime = "/api/v1/mobile/log/getLogByDeviceSerialWithTime"; // 日志
     public static final String getAlarmByDeviceSerialWithTime = "/api/v1/mobile/log/getAlarmByDeviceSerialWithTime"; // 警告

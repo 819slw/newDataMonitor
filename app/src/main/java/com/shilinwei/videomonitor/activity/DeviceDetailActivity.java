@@ -22,7 +22,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.google.gson.Gson;
@@ -47,6 +49,7 @@ public class DeviceDetailActivity extends BaseActivity {
     private EZUIPlayerView viewById;
     private EZPlayer player;
     private String deviceSerial;
+    private String deviceName;
 
     private RelativeLayout play_layout;
     private MyOrientationDetector mOrientationDetector;
@@ -83,10 +86,6 @@ public class DeviceDetailActivity extends BaseActivity {
             Display display = mWindowManager.getDefaultDisplay();
             Point pt = new Point();
             display.getSize(pt);
-            System.out.println("------");
-            System.out.println(pt.x);
-            System.out.println(pt.y);
-            System.out.println("------");
             return pt.x > pt.y;
         }
 
@@ -141,12 +140,25 @@ public class DeviceDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         deviceSerial =extras.get("deviceSerial").toString();
+        deviceName = extras.get("deviceName").toString();
         lat =extras.get("lat").toString();
         lng =extras.get("lng").toString();
         EkPlayerInit();
         initTabs();
         mOrientationDetector = new MyOrientationDetector(this);
 
+        TextView pageTitle = findViewById(R.id.tv_page_title);
+        pageTitle.setText(deviceName);
+
+
+        ImageView backBtn = findViewById(R.id.iv_back);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         play_layout = findViewById(R.id.play_layout);
         play_layout.setOnClickListener(new View.OnClickListener() {
@@ -158,12 +170,12 @@ public class DeviceDetailActivity extends BaseActivity {
                 System.out.println(isWideScrren);
                 if(isWideScrren) {
                     setLocalstorage("isLoadFullScreen", "0");
-                    viewById.setSurfaceSize(dm.widthPixels, 0);
+                    DeviceDetailActivity.this.viewById.setSurfaceSize(dm.widthPixels, 0);
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }else {
                     setLocalstorage("isLoadFullScreen", "1");
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    viewById.setSurfaceSize(dm.widthPixels, dm.heightPixels);
+                    DeviceDetailActivity.this.viewById.setSurfaceSize(dm.widthPixels, dm.heightPixels);
                 }
             }
         });

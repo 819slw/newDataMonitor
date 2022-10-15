@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 
 public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -58,7 +59,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         vh.name.setText(outDestructionEntity.getDeviceName());
         vh.isOnline.setText(outDestructionEntity.getStatus() == 1 ? "在线" : "离线" );
         vh.isOnline.setTextColor(Color.parseColor(outDestructionEntity.getStatus() == 1 ? "#4CAF50" : "#F44336"));
-        Glide.with(mContext).load(outDestructionEntity.getPoster()).into(vh.poster);
+        Glide.with(mContext).load(outDestructionEntity.getPoster() +"?"+ new Date().getTime()).into(vh.poster);
 
 
         vh.v_intoSet.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +78,10 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 String deviceSerial = datas.get(index).getDeviceSerial();
                 String lat = datas.get(index).getLat();
                 String lng = datas.get(index).getLng();
+                String deviceName = datas.get(index).getDeviceName();
                 Intent intent = new Intent(mContext, DeviceDetailActivity.class);
                 intent.putExtra("deviceSerial", deviceSerial);
+                intent.putExtra("deviceName", deviceName);
                 intent.putExtra("lat", lat);
                 intent.putExtra("lng", lng);
                 mContext.startActivity(intent);

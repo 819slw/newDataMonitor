@@ -42,41 +42,34 @@ public class DetailHistoryFragment extends BaseFragment {
     private String deviceSerial;
     //        告警部分
 
-    private LinearLayout ll_startTime;
-    private LinearLayout ll_endTime;
-
-    private TextView tv_startTime;
-    private TextView tv_endTime;
+    private String tv_startTime;
+    private String tv_endTime;
 
     private Long startTime;
     private Long endTime;
 
-    private Button bt_startPlayer;
     private LinearLayout ll_box;
 
     private ArrayList<PreviewFile> logPreviewFiles;
-//    private int logIndex;
-private TextView tv_nodata;
+    private TextView tv_nodata;
+
+    private ImageView iv_alarm_time;
+    private ImageView iv_log_time;
 
 
     //        定时部分
 
-    private LinearLayout ll_startTime1;
-    private LinearLayout ll_endTime1;
 
-    private TextView tv_startTime1;
-    private TextView tv_endTime1;
+    private String tv_startTime1;
+    private String tv_endTime1;
 
     private Long startTime1;
     private Long endTime1;
 
-    private Button bt_startPlayer1;
     private LinearLayout ll_box1;
     private ArrayList<PreviewFile> alarmPreviewFiles;
 
     private TextView tv_nodata1;
-
-//    private int alarmIndex;
 
     public DetailHistoryFragment() {
     }
@@ -111,99 +104,29 @@ private TextView tv_nodata;
         View v = inflater.inflate(R.layout.fragment_detail_history, container, false);
 //        告警部分
 
-        ll_startTime = v.findViewById(R.id.ll_startTime);
-        ll_endTime = v.findViewById(R.id.ll_endTime);
-
-        tv_startTime = v.findViewById(R.id.tv_startTime);
-        tv_endTime = v.findViewById(R.id.tv_endTime);
-        bt_startPlayer = v.findViewById(R.id.bt_startPlayer);
         ll_box = v.findViewById(R.id.ll_box);
         tv_nodata = v.findViewById(R.id.tv_nodata);
 
+        iv_alarm_time = v.findViewById(R.id.iv_alarm_time);
+        iv_log_time = v.findViewById(R.id.iv_log_time);
 
 
-        ll_startTime1 = v.findViewById(R.id.ll_startTime1);
-        ll_endTime1 = v.findViewById(R.id.ll_endTime1);
-
-        tv_startTime1 = v.findViewById(R.id.tv_startTime1);
-        tv_endTime1 = v.findViewById(R.id.tv_endTime1);
-        bt_startPlayer1 = v.findViewById(R.id.bt_startPlayer1);
-        ll_box1 = v.findViewById(R.id.ll_box1);
-        tv_nodata1 = v.findViewById(R.id.tv_nodata1);
-
-
-        //        定时部分
-
-        bt_startPlayer1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String s = tv_startTime1.getText().toString();
-                String e = tv_endTime1.getText().toString();
-
-                if (s.equals("请选择开始时间")) {
-                    showToast("请选择开始事件");
-                }else if (e.equals("请选择结束时间")) {
-                    showToast("请选择结束时间");
-                }else if (startTime1 >= endTime1) {
-                    showToast("开始时间必须大于结束时间");
-                }else {
-                    // 调用接口
-                    getLogList1();
-                }
-            }
-        });
-
-        ll_startTime1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openTimerDialog(3);
-            }
-        });
-
-        ll_endTime1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openTimerDialog(4);
-            }
-        });
-
-
-        //        告警部分
-
-        bt_startPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String s = tv_startTime.getText().toString();
-                String e = tv_endTime.getText().toString();
-
-                if (s.equals("请选择开始时间")) {
-                    showToast("请选择开始事件");
-                }else if (e.equals("请选择结束时间")) {
-                    showToast("请选择结束时间");
-                }else if (startTime >= endTime) {
-                    showToast("开始时间必须大于结束时间");
-                }else {
-                    // 调用接口
-                    getLogList();
-                }
-            }
-        });
-
-        ll_startTime.setOnClickListener(new View.OnClickListener() {
+        iv_alarm_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openTimerDialog(1);
             }
         });
 
-        ll_endTime.setOnClickListener(new View.OnClickListener() {
+        iv_log_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openTimerDialog(2);
+                openTimerDialog(3);
             }
         });
+
+        ll_box1 = v.findViewById(R.id.ll_box1);
+        tv_nodata1 = v.findViewById(R.id.tv_nodata1);
         return v;
     }
 
@@ -214,6 +137,7 @@ private TextView tv_nodata;
                 .setGravity(Gravity.BOTTOM)
                 .setSupportTime(true)
                 .setTwelveHour(true)
+                .setTitle(type % 2 == 0 ? "结束时间" : "开始时间" )
                 //结果回调(必须)
                 .setOnDateResultListener(new MDatePicker.OnDateResultListener() {
                     @Override
@@ -221,21 +145,57 @@ private TextView tv_nodata;
                         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         if (type == 1) {
                             startTime = date;
-                            tv_startTime.setText(formatter.format(date));
+                            tv_startTime = formatter.format(date);
+                            openTimerDialog(2);
                         } else if(type == 2) {
                             endTime = date;
-                            tv_endTime.setText(formatter.format(date));
+                            tv_endTime = formatter.format(date);
+                            beginSendAlarmSearch();
                         }else if (type == 3) {
                             startTime1 = date;
-                            tv_startTime1.setText(formatter.format(date));
+                            tv_startTime1 = formatter.format(date);
+                            openTimerDialog(4);
                         } else if(type == 4) {
                             endTime1 = date;
-                            tv_endTime1.setText(formatter.format(date));
+                            tv_endTime1 = formatter.format(date);
+                            beginSendLogSearch();
                         }
                     }
                 })
                 .build()
                 .show();
+    }
+
+    public void beginSendLogSearch() {
+        String s = tv_startTime1;
+        String e = tv_endTime1;
+
+        if (s.equals("请选择开始时间")) {
+            showToast("请选择开始事件");
+        }else if (e.equals("请选择结束时间")) {
+            showToast("请选择结束时间");
+        }else if (startTime1 >= endTime1) {
+            showToast("开始时间必须大于结束时间");
+        }else {
+            // 调用接口
+            getLogList1();
+        }
+    }
+
+    public void beginSendAlarmSearch() {
+        String s = tv_startTime;
+        String e = tv_endTime;
+
+        if (s.equals("请选择开始时间")) {
+            showToast("请选择开始事件");
+        }else if (e.equals("请选择结束时间")) {
+            showToast("请选择结束时间");
+        }else if (startTime >= endTime) {
+            showToast("开始时间必须大于结束时间");
+        }else {
+            // 调用接口
+            getLogList();
+        }
     }
 
     public void getLogList () {
@@ -261,7 +221,7 @@ private TextView tv_nodata;
                                 tv_nodata.setTextColor(getResources().getColor(R.color.white));
                                 ll_box.removeAllViews();
                             }});
-                        showToastSync("查询数据为空");
+//                        showToastSync("查询数据为空");
                         return;
                     }
                     getActivity().runOnUiThread(new Runnable() {
@@ -331,7 +291,7 @@ private TextView tv_nodata;
                                 tv_nodata1.setTextColor(getResources().getColor(R.color.white));
                                 ll_box1.removeAllViews();
                             }});
-                        showToastSync("查询数据为空");
+//                        showToastSync("查询数据为空");
                         return;
                     }
                     getActivity().runOnUiThread(new Runnable() {
