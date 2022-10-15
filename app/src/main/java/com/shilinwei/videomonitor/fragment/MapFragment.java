@@ -148,7 +148,7 @@ public class MapFragment extends BaseFragment {
             aMap = mMapView.getMap();
         }
         initDevicceList();
-        positonLocation();
+//        positonLocation();
         return v;
     }
 
@@ -196,6 +196,7 @@ public class MapFragment extends BaseFragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            boolean flag = false;
                             for (int i = 0; i < deviceList.size(); i++) {
                                 String lat = deviceList.get(i).getLat();
                                 String lng = deviceList.get(i).getLng();
@@ -209,7 +210,19 @@ public class MapFragment extends BaseFragment {
                                 marker.setObject(deviceList.get(i));
                                 aMap.setOnInfoWindowClickListener(infoWindowClickListener);
                                 aMap.setOnMarkerClickListener(markerClickListener);
+
+                                if(deviceName.indexOf("168") > -1) {
+                                    flag = true;
+                                    aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))));
+                                }
                             }
+
+                            if(!flag) {
+                                String lat = deviceList.get(0).getLat();
+                                String lng = deviceList.get(0).getLng();
+                                aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))));
+                            }
+
                         }
                     });
                 }
