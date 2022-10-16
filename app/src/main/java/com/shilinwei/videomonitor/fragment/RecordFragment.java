@@ -77,6 +77,7 @@ public class RecordFragment extends BaseFragment {
         String depart_id = loginResponseEntity.getData().getDepart_id();
         params.put("depart_id", depart_id);
         params.put("page", "1");
+        params.put("push_type", "1");
         params.put("pageSize", "30");
 
 
