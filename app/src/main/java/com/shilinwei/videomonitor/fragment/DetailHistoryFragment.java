@@ -136,7 +136,7 @@ public class DetailHistoryFragment extends BaseFragment {
                 .setCanceledTouchOutside(true)
                 .setGravity(Gravity.BOTTOM)
                 .setSupportTime(true)
-                .setTwelveHour(true)
+                .setTwelveHour(false)
                 .setTitle(type % 2 == 0 ? "结束时间" : "开始时间" )
                 //结果回调(必须)
                 .setOnDateResultListener(new MDatePicker.OnDateResultListener() {

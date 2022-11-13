@@ -95,10 +95,12 @@ public class RecordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 String deviceSerial = datas.get(index).getDeviceSerial();
                 String lat = datas.get(index).getLat();
                 String lng = datas.get(index).getLng();
+                String getDeviceName = datas.get(index).getDeviceName();
                 Intent intent = new Intent(mContext, DeviceDetailActivity.class);
                 intent.putExtra("deviceSerial", deviceSerial);
                 intent.putExtra("lat", lat);
                 intent.putExtra("lng", lng);
+                intent.putExtra("deviceName", getDeviceName);
                 mContext.startActivity(intent);
             }
         });
