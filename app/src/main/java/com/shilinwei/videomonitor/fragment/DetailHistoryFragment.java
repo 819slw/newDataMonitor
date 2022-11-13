@@ -306,24 +306,24 @@ public class DetailHistoryFragment extends BaseFragment {
                                 String deviceName = list1.get(i).getDeviceName();
                                 for (int j = 0; j < list1.get(i).getDetail().size(); j++) {
                                     ImageView image = new ImageView(getActivity());
-                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(400, 200);
-                                image.setLayoutParams(layoutParams);
-                                String pic_url = list1.get(i).getDetail().get(0).getPic_url();
-                                if(pic_url == null || "".equals(pic_url)) {
-                                    continue;
-                                }
-                                Glide.with(getActivity()).load(pic_url).into(image);
-                                ll_box1.addView(image);
-
-                                logPreviewFiles.add(new PreviewFile(pic_url,deviceName));
-                                    logIndex++;
-                                    int finalLogIndex = logIndex + 1;
-                                image.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        previewImage(logPreviewFiles, finalLogIndex);
+                                    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(400, 200);
+                                    image.setLayoutParams(layoutParams);
+                                    String pic_url = list1.get(i).getDetail().get(j).getPic_url();
+                                    if(pic_url == null || "".equals(pic_url)) {
+                                        continue;
                                     }
-                                });
+                                    Glide.with(getActivity()).load(pic_url).into(image);
+                                    ll_box1.addView(image);
+
+                                    logPreviewFiles.add(new PreviewFile(pic_url,deviceName));
+                                        logIndex++;
+                                        int finalLogIndex = logIndex + 1;
+                                    image.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            previewImage(logPreviewFiles, finalLogIndex);
+                                        }
+                                    });
                                 }
                             }
                         }
