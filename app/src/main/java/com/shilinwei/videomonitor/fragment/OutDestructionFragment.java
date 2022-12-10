@@ -67,8 +67,11 @@ public class OutDestructionFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public static OutDestructionFragment newInstance() {
+    public static OutDestructionFragment newInstance(int pageType) {
         OutDestructionFragment fragment = new OutDestructionFragment();
+        Bundle args = new Bundle();
+        args.putInt("pageType", pageType);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -152,7 +155,15 @@ public class OutDestructionFragment extends BaseFragment {
         String depart_id = loginResponseEntity.getData().getDepart_id();
         params.put("depart_id", depart_id);
 
-        Api.config(ApiConfig.DeviceList, params).postRequest(getActivity(),new TtitCallback() {
+        String reqStr = "";
+
+        if(getArguments().getInt("pageType") == 1) {
+            reqStr = ApiConfig.DeviceList;
+        }else if(getArguments().getInt("pageType") == 2) {
+            reqStr =ApiConfig.DeviceList;
+        }
+
+        Api.config( reqStr, params).postRequest(getActivity(),new TtitCallback() {
             @Override
             public void onSuccess(String res) {
                 OutDestructionResponseEntity list = new Gson().fromJson(res, OutDestructionResponseEntity.class);

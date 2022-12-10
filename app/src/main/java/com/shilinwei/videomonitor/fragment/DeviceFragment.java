@@ -103,8 +103,9 @@ public class DeviceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fragments.add(OutDestructionFragment.newInstance());
-        fragments.add(VideoFragment.newInstance());
+        fragments.add(OutDestructionFragment.newInstance(1));
+        fragments.add(OutDestructionFragment.newInstance(2));
+//        fragments.add(VideoFragment.newInstance());
         fragments.add(ImageFragment.newInstance());
         fragments.add(BallFragment.newInstance());
 
