@@ -32,7 +32,7 @@ import java.util.TimerTask;
 
 public class DeviceFragment extends Fragment {
 
-    private String[] mTitles = {"防外破监测", "视频监测", "图像监测", "布控球"};
+    private String[] mTitles = {"防外破监测", "激光驱鸟", "图像监测", "布控球"};
     //    存放tabs的集合
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ViewPager viewPager;

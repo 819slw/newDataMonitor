@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.shilinwei.videomonitor.R;
+import com.shilinwei.videomonitor.activity.BirdDriveActivity;
 import com.shilinwei.videomonitor.activity.DeviceDetailActivity;
 import com.shilinwei.videomonitor.activity.DeviceInspectActivity;
 import com.shilinwei.videomonitor.activity.LoginActivity;
@@ -89,7 +90,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     intent.putExtra("lng", lng);
                     mContext.startActivity(intent);
                 }else if(pageType == 2){
-                    Intent intent = new Intent(mContext, DeviceDetailActivity.class);
+                    Intent intent = new Intent(mContext, BirdDriveActivity.class);
                     intent.putExtra("deviceSerial", deviceSerial);
                     intent.putExtra("deviceName", deviceName);
                     intent.putExtra("lat", lat);
