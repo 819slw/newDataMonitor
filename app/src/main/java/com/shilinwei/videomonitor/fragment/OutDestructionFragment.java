@@ -135,7 +135,6 @@ public class OutDestructionFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
 //        因为List列表是线性布局，所以先new一个线性布局类
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 //        设置布局

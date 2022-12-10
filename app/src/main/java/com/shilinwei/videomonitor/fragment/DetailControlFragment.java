@@ -384,6 +384,10 @@ public class DetailControlFragment extends BaseFragment {
             @Override
             public void onSuccess(String res) {
                 presetPointEntity = new Gson().fromJson(res, PresetPointEntity.class);
+                System.out.println(presetPointEntity);
+                if(presetPointEntity == null) {
+                   return;
+                }
                 List<String> presetArr = new ArrayList<>();
 
                 for (PresetPointEntity.DataDTO datum : presetPointEntity.getData()) {
