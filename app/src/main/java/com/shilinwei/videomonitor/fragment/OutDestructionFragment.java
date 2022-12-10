@@ -85,7 +85,7 @@ public class OutDestructionFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 List<OutDestructionEntity> list1 = new ArrayList<>();
-                OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1);
+                OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1,getArguments().getInt("pageType"));
                 recyclerView.setAdapter(outDestructionAdapter);
                 getOutDestructionList();
             }
@@ -130,7 +130,7 @@ public class OutDestructionFragment extends BaseFragment {
                 list1.add(deviceList.get(i));
             }
         }
-        OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1);
+        OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), list1 ,getArguments().getInt("pageType"));
         recyclerView.setAdapter(outDestructionAdapter);
     }
 
@@ -170,7 +170,7 @@ public class OutDestructionFragment extends BaseFragment {
                 if(list != null) {
                     mSwipeRefreshLayout.setRefreshing(false);
                     deviceList = list.getData().getList();
-                    OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), deviceList);
+                    OutDestructionAdapter outDestructionAdapter = new OutDestructionAdapter(getActivity(), deviceList,getArguments().getInt("pageType"));
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

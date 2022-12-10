@@ -35,10 +35,12 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Context mContext;
     private List<OutDestructionEntity> datas;
+    private  Integer pageType;
 
-    public OutDestructionAdapter(Context context, List<OutDestructionEntity> datas) {
+    public OutDestructionAdapter(Context context, List<OutDestructionEntity> data,Integer pageType) {
         this.mContext = context;
-        this.datas = datas;
+        this.datas = data;
+        this.pageType = pageType;
     }
 
     @NonNull
@@ -79,12 +81,22 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 String lat = datas.get(index).getLat();
                 String lng = datas.get(index).getLng();
                 String deviceName = datas.get(index).getDeviceName();
-                Intent intent = new Intent(mContext, DeviceDetailActivity.class);
-                intent.putExtra("deviceSerial", deviceSerial);
-                intent.putExtra("deviceName", deviceName);
-                intent.putExtra("lat", lat);
-                intent.putExtra("lng", lng);
-                mContext.startActivity(intent);
+                if(pageType == 1){
+                    Intent intent = new Intent(mContext, DeviceDetailActivity.class);
+                    intent.putExtra("deviceSerial", deviceSerial);
+                    intent.putExtra("deviceName", deviceName);
+                    intent.putExtra("lat", lat);
+                    intent.putExtra("lng", lng);
+                    mContext.startActivity(intent);
+                }else if(pageType == 2){
+                    Intent intent = new Intent(mContext, DeviceDetailActivity.class);
+                    intent.putExtra("deviceSerial", deviceSerial);
+                    intent.putExtra("deviceName", deviceName);
+                    intent.putExtra("lat", lat);
+                    intent.putExtra("lng", lng);
+                    mContext.startActivity(intent);
+                }
+
             }
         });
     }
