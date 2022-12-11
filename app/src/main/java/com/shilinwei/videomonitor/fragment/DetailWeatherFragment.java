@@ -102,6 +102,9 @@ public class DetailWeatherFragment extends BaseFragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if(threeDayEntity.getDaily() == null) {
+                            return;
+                        }
                         String todayMin = threeDayEntity.getDaily().get(0).getTempMin();
                         String todayMax = threeDayEntity.getDaily().get(0).getTempMax();
                         tvTodayIcon.setText(todayMin + "度/" + todayMax + "度");
@@ -151,6 +154,9 @@ public class DetailWeatherFragment extends BaseFragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if(weatherEntity.getNow() == null) {
+                            return;
+                        }
                         tvNowTemp.setText(weatherEntity.getNow().getTemp() + "℃");
                         tvNowWord.setText(weatherEntity.getNow().getText());
                         tvNowFeng.setText(weatherEntity.getNow().getWindScale() + "级");
