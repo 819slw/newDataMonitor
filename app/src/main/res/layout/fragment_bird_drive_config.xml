@@ -23,6 +23,8 @@
             android:textOff="关"></Switch>
     </LinearLayout>
 
+
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
