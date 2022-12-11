@@ -59,7 +59,7 @@ public class OutDestructionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ViewHolder vh = (ViewHolder) holder;
         int index = position;
         OutDestructionEntity outDestructionEntity = datas.get(position);
-        vh.name.setText(outDestructionEntity.getDeviceName());
+        vh.name.setText((index + 1) +"."+ outDestructionEntity.getDeviceName());
         vh.isOnline.setText(outDestructionEntity.getStatus() == 1 ? "在线" : "离线" );
         vh.isOnline.setTextColor(Color.parseColor(outDestructionEntity.getStatus() == 1 ? "#4CAF50" : "#F44336"));
         Glide.with(mContext).load(outDestructionEntity.getPoster() +"?"+ new Date().getTime()).into(vh.poster);

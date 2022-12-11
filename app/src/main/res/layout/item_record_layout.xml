@@ -23,6 +23,7 @@
                 android:id="@+id/tv_name"
                 android:ellipsize="end"
                 android:lines="1"
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="设备名称: 12341234123"></TextView>
@@ -30,12 +31,16 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
+
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="日期: 2022-9-17"></TextView>
             <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
+                android:textColor="#000000"
+
                 android:layout_height="wrap_content"
                 android:text="推送状态: 定时推送"></TextView>
             <LinearLayout

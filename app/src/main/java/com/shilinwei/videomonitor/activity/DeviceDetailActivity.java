@@ -232,6 +232,7 @@ public class DeviceDetailActivity extends BaseActivity {
     }
 
     public void EZStart() {
+        System.out.println("EZStart 开始播放");
         player.startRealPlay();
     }
 
